@@ -28,7 +28,7 @@ function init() {
 		console.log('Database file is exists!');
 		getMAX_ID('SYS_PARAM');
 	}
-}
+} 
 
 
 
