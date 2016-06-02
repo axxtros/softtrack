@@ -16,10 +16,19 @@ dbctrl.createDB = function(dbFileName) {
 	createDatabase(dbFileName);	
 };
 
+/*
 dbctrl.getProgramName = function() {
 	db.each("SELECT VALUE FROM SYS_PARAM WHERE KEY = 'PROGRAM_NAME'", function(err, row){
-		console.log('@ax program name: ' + row.value);
+		//console.log('@ax program name: ' + row.value);
 		return row.value;
+	});
+};
+*/
+
+dbctrl.getProgramName = function(callback) {
+	db.each("SELECT VALUE FROM SYS_PARAM WHERE KEY = 'PROGRAM_NAME'", function(err, row) {
+  		console.log('@ax program name: ' + row.value);
+  		callback(row.value);
 	});
 };
 
