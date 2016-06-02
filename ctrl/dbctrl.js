@@ -16,6 +16,13 @@ dbctrl.createDB = function(dbFileName) {
 	createDatabase(dbFileName);	
 };
 
+dbctrl.getProgramName = function() {
+	db.each("SELECT VALUE FROM SYS_PARAM WHERE KEY = 'PROGRAM_NAME'", function(err, row){
+		console.log('@ax program name: ' + row.value);
+		return row.value;
+	});
+};
+
 //functions -------------------------------------------------------------------
 
 function init() {
@@ -29,8 +36,6 @@ function init() {
 		getMAX_ID('SYS_PARAM');
 	}
 } 
-
-
 
 function createDatabase(dbFileName) {	
 	//rendszer paraméter tábla
@@ -77,7 +82,14 @@ function dbClose() {
 //Visszaadja a paraméterben található tábla következő szabad id-ját.
 function getMAX_ID(tableName) {	
 	db.each("SELECT MAX(id) as id FROM " + tableName, function(err, row) {      
-      //console.log(row.id + 1);
+      //console.log(@ax row.id + 1);
       return (row.id + 1);
   });
+}
+
+function getProgramFullName() {
+	db.each("SELECT VALUE FROM SYS_PARAM WHERE KEY = 'PROGRAM_NAME'", function(err, row){
+		console.log('@ax program name: ' + row.value);
+		return row.value;
+	});
 }
