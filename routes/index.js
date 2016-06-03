@@ -6,16 +6,23 @@ var dbControl = require('../ctrl/dbctrl.js');
 
 //var staticControl = require('../ctrl/static.js');
 
-var sqlite3 = require('sqlite3').verbose();
-var fs = require("fs");
-var file = "datas.db";
-var db = new sqlite3.Database(file);
+//var sqlite3 = require('sqlite3').verbose();
+//var fs = require("fs");
+//var file = "datas.db";
+//var db = new sqlite3.Database(file);
+
+/*
+router.get('/', function(req, res, next) {
+ 	console.log('pn1: ' + dbControl.getProgramName());
+ 	res.render('index', { title: dbControl.getProgramName() });
+ 	console.log('pn2: ' + dbControl.getProgramName());
+ 	res.end();
+});
+*/
 
 router.get('/', function(req, res, next) {
-	dbControl.getProgramName(function(programName) {
-		//console.log('pn1: ' + programName;
-   		res.render('index', { title: programName });
-   		//console.log('pn2: ' + programName;
+	dbControl.getProgramName(function(programName) {		
+   		res.render('index', { program_name: programName });
    		res.end();
  	});
 });
